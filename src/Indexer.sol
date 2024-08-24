@@ -38,4 +38,8 @@ contract Indexer is Ownable {
 
         emit TransactionAdded(_type, _amount, _timestamp, _cid);
     }
+
+    function totalTransactions() public view returns (uint256) {
+        return transactions.length;
+    }
 }
