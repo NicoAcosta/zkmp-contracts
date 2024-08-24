@@ -26,7 +26,7 @@ event TransactionAdded(
 contract Indexer is Ownable {
     Transaction[] public transactions;
 
-    constructor(address _owner) Owner(_owner) {}
+    constructor(address _owner) Ownable(_owner) {}
 
     function addTransaction(
         TransactionType _type,
