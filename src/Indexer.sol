@@ -28,15 +28,18 @@ contract Indexer is Ownable {
 
     constructor(address _owner) Ownable(_owner) {}
 
-    function addTransaction(
-        TransactionType _type,
-        uint256 _amount,
-        uint256 _timestamp,
-        string memory _cid
-    ) public onlyOwner {
-        transactions.push(Transaction(_type, _amount, _timestamp, _cid));
+    function addTransaction(Transaction memory _transaction) public onlyOwner {
+        transactions.push(_transaction);
 
-        emit TransactionAdded(_type, _amount, _timestamp, _cid);
+        emit TransactionAdded(_transaction._type, _transaction.amount, _transaction.timestamp, _transaction.cid);
+    }
+
+    function addTransactionBatch(Transaction[] memory _transactions) public onlyOwner {
+        for (uint256 i = 0; i < _transactions.length; i++) {
+            transactions.push(_transactions[i]);
+
+            emit TransactionAdded(_transactions[i]._type, _transactions[i].amount, _transactions[i].timestamp, _transactions[i].cid);
+        }
     }
 
     function totalTransactions() public view returns (uint256) {
