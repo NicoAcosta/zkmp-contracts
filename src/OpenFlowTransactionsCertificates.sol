@@ -13,10 +13,12 @@ pragma solidity ^0.8.13;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract Indexer is ERC721URIStorage, Ownable {
+contract OpenFlowTransactionCertificates is ERC721URIStorage, Ownable {
     uint256 private _tokenId;
 
-    constructor(address _owner) ERC721("OpenFlow", "OF") Ownable(msg.sender) {}
+    constructor(
+        address _owner
+    ) ERC721("OpenFlow Transaction Certificates", "OFTX") Ownable(msg.sender) {}
 
     function mint(string memory _uri) public onlyOwner {
         __mint(_uri);
