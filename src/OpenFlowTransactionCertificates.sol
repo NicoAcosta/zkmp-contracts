@@ -51,4 +51,9 @@ contract OpenFlowTransactionCertificates is ERC721URIStorage, Ownable {
 
         return uris;
     }
+
+    function contractURI() public pure returns (string memory) {
+        return
+            "ipfs://bafkreid7ar7tqjo5gty7tkkxykq7k7n4x5d3quimotr6gg53mweadqifbi";
+    }
 }
