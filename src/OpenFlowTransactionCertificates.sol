@@ -18,7 +18,7 @@ contract OpenFlowTransactionCertificates is ERC721URIStorage, Ownable {
 
     constructor(
         address _owner
-    ) ERC721("OpenFlow Transaction Certificates", "OFTX") Ownable(msg.sender) {}
+    ) ERC721("OpenFlow Transaction Certificates", "OFTX") Ownable(_owner) {}
 
     function mint(string memory _uri) public onlyOwner {
         __mint(_uri);
