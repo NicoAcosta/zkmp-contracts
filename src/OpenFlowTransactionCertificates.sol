@@ -36,4 +36,19 @@ contract OpenFlowTransactionCertificates is ERC721URIStorage, Ownable {
         _setTokenURI(newtokenId, _uri);
         _mint(address(this), newtokenId);
     }
+
+    function tokenURIBatch(
+        uint256 _floor,
+        uint256 ceiling
+    ) public view returns (string[] memory) {
+        require(_floor < ceiling, "Invalid range");
+
+        string[] memory uris = new string[](ceiling - _floor);
+
+        for (uint256 i = _floor; i < ceiling; i++) {
+            uris[i - _floor] = tokenURI(i);
+        }
+
+        return uris;
+    }
 }
