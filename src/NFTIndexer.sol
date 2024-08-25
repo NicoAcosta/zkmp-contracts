@@ -1,3 +1,12 @@
+//
+//   ______     ______   ______     __   __     ______   __         ______     __     __
+//  /\  __ \   /\  == \ /\  ___\   /\ "-.\ \   /\  ___\ /\ \       /\  __ \   /\ \  _ \ \
+//  \ \ \/\ \  \ \  _-/ \ \  __\   \ \ \-.  \  \ \  __\ \ \ \____  \ \ \/\ \  \ \ \/ ".\ \
+//   \ \_____\  \ \_\    \ \_____\  \ \_\\"\_\  \ \_\    \ \_____\  \ \_____\  \ \__/".~\_\
+//    \/_____/   \/_/     \/_____/   \/_/ \/_/   \/_/     \/_____/   \/_____/   \/_/   \/_/
+//
+//
+
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
@@ -7,12 +16,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 contract Indexer is ERC721URIStorage, Ownable {
     uint256 private _tokenId;
 
-    address public holder;
-
-    constructor(
-        address _owner,
-        address _holder
-    ) ERC721("OpenFlow", "OF") Ownable(msg.sender) {}
+    constructor(address _owner) ERC721("OpenFlow", "OF") Ownable(msg.sender) {}
 
     function mint(string memory _uri) public onlyOwner {
         __mint(_uri);
@@ -28,6 +32,6 @@ contract Indexer is ERC721URIStorage, Ownable {
         uint256 newtokenId = _tokenId++;
 
         _setTokenURI(newtokenId, _uri);
-        _mint(holder, newtokenId);
+        _mint(address(this), newtokenId);
     }
 }
